@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+	   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+	
+	<!-- 自动搜索@Controller标注的类 -->
+	<context:component-scan base-package="com.**.controller" />
+	 <bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="114572800" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+	
+	<!-- 添加注解驱动(PS:命名空间只能是3.0的) -->
+	<mvc:annotation-driven />
+	
+	<!-- 资源文件路径跳过处理 -->
+	<mvc:default-servlet-handler/>
+	
+	<!-- 配置多视图解析 -->
+	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<!-- 因各浏览器对报文头的处理不一致，忽略对Accept Header的支持	 -->
+		<property name="ignoreAcceptHeader" value="true" />
+	<!-- 	配置默认视图类型(路径无后缀名及在后缀名视图处理之外的路径) -->
+		<property name="defaultContentType" value="text/html" />
+		
+		<!-- 开启对路径参数后缀的支持(xxxx?format=json/xml···) -->
+		<property name="favorParameter" value="true" />
+		<!-- 配置后缀名视图(.json/.xml) -->
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json" />
+				<entry key="xml" value="application/xml" />
+			</map>
+		</property>
+
+		
+		</bean>
+		
+		<!-- 	配置后缀名视图处理 -->
+		<!-- <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">  
+		   <property name="contentNegotiationManager" ref="contentNegotiationManager"/>  
+		   		配置默认视图类型显示
+		   <property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+					<property name="prefix" value="/WEB-INF/pages/" />
+					<property name="suffix" value=".jsp" />
+				</bean>
+			</list>
+			</property>
+		   <property name="defaultViews">
+			<list>
+			json处理
+				<bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+				xml处理
+				<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+					<property name="marshaller">
+						<bean class="org.springframework.oxm.xstream.XStreamMarshaller" />
+					</property>
+				</bean>				
+			</list>
+		</property>
+		</bean>   -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="mappingJackson2HttpMessageConverter" />
+            </list>
+        </property>
+    </bean>
+    <bean id="mappingJackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+                <value>text/json;charset=UTF-8</value>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+		
+		
+</beans>
