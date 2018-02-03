@@ -1,4 +1,13 @@
+# package files
 *.jar
-.settings
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# eclipse project file
+.checkstyle
 .classpath
 .project
+.settings
