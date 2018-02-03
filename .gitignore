@@ -11,3 +11,20 @@
 .classpath
 .project
 .settings
+
+
+#android studio project file
+*.properties
+.gradle
+gradle
+build
+gradlew
+.bat
+*/build
+.idea
+*.iml
+*.pro
+*/keystore
+api.key
+custom-versions/*
+*/signature.asc
