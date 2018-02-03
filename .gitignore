@@ -14,7 +14,8 @@
 
 
 #android studio project file
-*.properties
+local.properties
+gradle.properties
 .gradle
 gradle
 build
