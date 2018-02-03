@@ -1,1 +1,4 @@
 *.jar
+.settings
+.classpath
+.project
