@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <Button
+        android:id="@+id/queryButton"
+        android:layout_width="160dp"
+        android:layout_height="30dp"
+        android:background="@drawable/corner"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:textAllCaps="false"
+        android:singleLine="true"
+        android:ellipsize="end"/>
+    <SeekBar
+        android:id="@+id/querWeight"
+        android:layout_width="160dp"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+</merge>

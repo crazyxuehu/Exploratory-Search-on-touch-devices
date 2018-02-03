@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!--<SearchView
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:queryHint="Entity name"
+        android:imeOptions="actionSearch"
+        />-->
+    <ImageView
+        android:id="@+id/searchIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/search"
+        android:onClick="goSearch"/>
+    <MultiAutoCompleteTextView
+        android:id="@+id/searchtext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/searchIcon"
+        android:imeOptions="actionSearch"
+        android:singleLine="true"
+        android:textSize="20dp"
+        android:textStyle="bold|italic"
+        android:fontFamily="sans-serif"/>
+   <!--<View
+        android:id="@+id/searcheditText"
+        android:layout_width="900dp"
+        android:layout_height="1px"
+        android:background="@color/colorAccent"
+        android:layout_below="@id/search"/>-->
+</RelativeLayout>

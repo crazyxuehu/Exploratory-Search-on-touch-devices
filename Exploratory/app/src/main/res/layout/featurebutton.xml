@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <Button
+        android:id="@+id/featureRelation"
+        android:layout_height="30dp"
+        android:layout_width="85dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="15dp"
+        android:background="@drawable/relaton"
+        android:textAllCaps="false"
+        android:singleLine="true"
+        android:ellipsize="end"/>
+    <Button
+        android:id="@+id/featureEntity"
+        android:layout_height="30dp"
+        android:layout_width="150dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/corner"
+        android:layout_marginLeft="0dp"
+        android:textAllCaps="false"
+        android:singleLine="true"
+        android:ellipsize="end"/>
+</merge>

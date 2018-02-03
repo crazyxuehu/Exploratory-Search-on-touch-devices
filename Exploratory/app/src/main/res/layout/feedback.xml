@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.example.gogoalfight.exploratory.featureButton
+        android:id="@+id/fbackbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </com.example.gogoalfight.exploratory.featureButton>
+    <SeekBar
+        android:id="@+id/fbackweight"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"/>
+</merge>

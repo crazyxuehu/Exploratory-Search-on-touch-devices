@@ -1,0 +1,39 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="SearchTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <declare-styleable name="QueryButton">
+        <attr name="button_text" format="string" />
+        <attr name="seek_weight" format="float" />
+    </declare-styleable>
+    <declare-styleable name="FeatureButton">
+        <attr name="relation_text" format="string" />
+        <attr name="entity_text" format="string" />
+        <attr name="label_width" format="integer"/>
+        <attr name="entity_width" format="integer"/>
+    </declare-styleable>
+    <declare-styleable name="FeedBack">
+        <attr name="feadback_label" format="string" />
+        <attr name="feedback_entity" format="string" />
+        <attr name="feedback_weight" format="integer"/>
+        <attr name="feedback_Labelwidth" format="integer"/>
+        <attr name="feedback_Relationwidth" format="integer"/>
+        <attr name="feedback_marginleft" format="integer"/>
+    </declare-styleable>
+    <declare-styleable name="ImageNode">
+        <attr name="imagenode_src" format="reference|integer" />
+        <attr name="imagenode_text" format="string" />
+    </declare-styleable>
+
+</resources>

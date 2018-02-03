@@ -1,0 +1,141 @@
+<html>
+<script language="javascript">
+        /* This function is invoked by the activity
+        我只想表示，貌似 H5 真的很强大
+        */
+        function wave() {
+            alert("1");
+            location.href="http:www.baidu.com";
+
+        }
+    </script>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="height:400px"></div>
+<!-- ECharts单文件引入 -->
+<script src="echarts.min.js"></script>
+<script src="jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+        // 路径配置
+     //var data =JavaScriptInterface.getData();
+    var data=JSON.parse(JavaScriptInterface.getData());
+    var links=JSON.parse(JavaScriptInterface.getLinks());
+     var myChart = echarts.init(document.getElementById('main'));
+        // 指定图表的配置项和数据
+      var option = {
+      title:{
+    	  show:true,
+    	  text:'Relation Explore',
+    	  left:'center',
+    	  textStyle:{
+    		  color:'gray',
+		      fontStyle:'italic',
+		      fontWeight:'bolder',
+		      fontSize:20
+    	  },
+      },
+    tooltip: {
+        show: true,
+        textStyle:{
+    		  fontSize:20
+    	  }
+    },
+    toolbox:{
+    	show:false,
+    	feature:{
+    		dataView:{show:true,readOnly:true},
+    		restore:{show:true},
+    		magicType:{
+    			show:true,
+    			type:['Les Miserables']
+    		}
+    	}
+    },
+    legend: {
+        x: "right",
+        data: ["Category", "Entity","Query"],
+        formatter:function(name){
+        	return echarts.format.truncateText(name,120,'15px Times New Roman', '…');
+        }
+    },
+    animation: false,
+    series: [{
+        categories: [{
+            name: 'Category',
+            itemStyle: {
+                normal: {
+                    color: "#033c73",
+                }
+            }
+        }, {
+            name: 'Entity',
+            itemStyle: {
+                normal: {
+                    color: "#73a839",
+                }
+            }
+           },
+           {
+           name:'Query',
+           itemStyle:{
+        	   normal:{
+
+        	   }
+           }
+           },
+           {
+           name:'Similar',
+           itemStyle:{
+        	   normal:{
+        		  color: "#EC971F",
+        	   }
+           }
+        }],
+        type: 'graph',
+        layout: 'none',
+        symbol: "roundRect",
+        symbolSize: [70,50],
+        hoverAnimation:false,
+        roam: false,
+        edgeSymbol: ['circle', 'arrow'],
+        edgeSymbolSize: [0, 10],
+        // 连接线上的文字
+        focusNodeAdjacency: false, //划过只显示对应关系
+        edgeLabel: {
+            normal: {
+                show: true,
+                textStyle: {
+                    fontSize: 15
+                },
+                formatter: "{c}"
+            }
+        },
+        lineStyle: {
+            normal: {
+                opacity: 2,
+                width:1,
+                curveness: 0
+            }
+        },
+        // 圆圈内的文字
+        label: {
+            normal: {
+                show:true,
+                position:'inside',
+            },
+             textStyle: {
+                    fontSize: 15,
+                    fontWeight:'bold',
+                    fontFamily:'Times New Roman'
+            },
+        },
+        data: data,
+        //[{"name":"forrest gump","x":300,"y":300,"category":2},{"name":"united states","x":800,"y":200,"category":1},{"name":"7500 (film)","x":1000,"y":400,"category":1},{"name":"category:american \n aviation films","x":1300,"y":700,"category":0},{"name":"the terminal","x":1600,"y":1200,"category":1},{"name":"every time we say goodbye (film)","x":1520,"y":1200,"category":1},{"name":"category:american horror films","x":1380,"y":800,"category":0},{"name":"he knows you're alone","x":1500,"y":800,"category":1},{"name":"tom hanks","x":2000,"y":1000,"category":2}],
+        links:links,
+        //[{"source":"forrest gump","target":"united states","value":"country"},{"source":"7500 (film)","target":"united states","value":"country"},{"source":"7500 (film)","target":"category:american aviation films","value":"subject"},{"source":"the terminal","target":"category:american aviation films","value":"subject"},{"source":"the terminal","target":"tom hanks","value":"starring"},{"source":"7500 (film)","target":"united states","value":"country"},{"source":"every time we say goodbye (film)","target":"category:american aviation films","value":"subject"},{"source":"every time we say goodbye (film)","target":"tom hanks","value":"starring"},{"source":"7500 (film)","target":"united states","value":"country"},{"source":"7500 (film)","target":"category:american horror films","value":"subject"},{"source":"he knows you're alone","target":"category:american horror films","value":"subject"},{"source":"he knows you're alone","target":"tom hanks","value":"starring"},{"source":"forrest gump","target":"tom hanks","value":"starring"}]
+    }]
+};        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

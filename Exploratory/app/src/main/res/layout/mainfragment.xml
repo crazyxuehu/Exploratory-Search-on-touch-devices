@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <Button
+        android:id="@+id/currentSearch"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Current Search"
+        android:textAlignment="center"
+        android:textSize="15dp"
+        android:textAllCaps="false"/>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ScrollView
+            android:id="@+id/positiveInput"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/margingreen">
+
+            <LinearLayout
+                android:id="@+id/Query"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- <com.example.gogoalfight.exploratory.FeedBack
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  app:feadback_label="Relation"
+                  app:feedback_entity="Entity"
+                  >
+                </com.example.gogoalfight.exploratory.FeedBack>-->
+            </LinearLayout>
+        </ScrollView>
+        <!--<com.example.gogoalfight.exploratory.MyScrollView
+            android:id="@+id/scrollview2"
+            android:layout_width="500dp"
+            android:layout_height="match_parent">-->
+            <LinearLayout
+                android:id="@+id/search_result"
+                android:layout_width="500dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/midgreen">
+                <!--<Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Entity List(Q1)"/>-->
+                <!-- <HorizontalScrollView
+                    android:layout_width="520dp"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <com.example.gogoalfight.exploratory.ImageNode
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:imagenode_text="noodles"
+                            app:imagenode_src="@drawable/img1">
+                        </com.example.gogoalfight.exploratory.ImageNode>
+                        <com.example.gogoalfight.exploratory.ImageNode
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:imagenode_text="noodles"
+                            app:imagenode_src="@drawable/img1">
+                        </com.example.gogoalfight.exploratory.ImageNode>
+                        <com.example.gogoalfight.exploratory.ImageNode
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:imagenode_text="noodles"
+                            app:imagenode_src="@drawable/img1">
+                        </com.example.gogoalfight.exploratory.ImageNode>
+                        <com.example.gogoalfight.exploratory.ImageNode
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:imagenode_text="noodles"
+                            app:imagenode_src="@drawable/img1">
+                        </com.example.gogoalfight.exploratory.ImageNode>
+
+                    </LinearLayout>
+                </HorizontalScrollView>-->
+              <!-- <com.example.gogoalfight.exploratory.MyScrollView
+                    android:id="@+id/scrollview2"
+                    android:layout_width="500dp"
+                    android:layout_height="300dp">
+                   <LinearLayout
+                        android:id="@+id/scrollLayout"
+                        android:layout_width="500dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">-->
+
+                       <!-- <LinearLayout
+                            android:layout_width="500dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">-->
+
+                           <!-- <LinearLayout
+                                android:id="@+id/featureLayout1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">-->
+                                <!-- <com.example.gogoalfight.exploratory.featureButton
+                                android:id="@+id/testtouch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:relation_text="relation"
+                                app:entity_text="entity">
+                            </com.example.gogoalfight.exploratory.featureButton>-->
+                          <!--  </LinearLayout>-->
+
+                           <!-- <LinearLayout
+                                android:id="@+id/featureLayout2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:orientation="vertical">
+                                &lt;!&ndash; <com.example.gogoalfight.exploratory.featureButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:relation_text="relation"
+                                app:entity_text="entity">
+                            </com.example.gogoalfight.exploratory.featureButton>&ndash;&gt;
+                            </LinearLayout>-->
+                        <!--</LinearLayout>-->
+                        <!-- </LinearLayout>-->
+                   <!-- </LinearLayout>-->
+                <!--</ScrollView>-->
+                  <!-- </LinearLayout>
+            </com.example.gogoalfight.exploratory.MyScrollView>-->
+        </LinearLayout>
+       <!-- </com.example.gogoalfight.exploratory.MyScrollView>-->
+
+        <ScrollView
+            android:id="@+id/negativeInput"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/margingreen">
+
+            <LinearLayout
+                android:id="@+id/feadback"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--<Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Query 1"/>-->
+                <!--<com.example.gogoalfight.exploratory.FeedBack
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:feadback_label="Relation"
+                    app:feedback_entity="Entity"
+                    />-->
+                <!--<com.example.gogoalfight.exploratory.FeedBack
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:feadback_label="Relation"
+                    app:feedback_entity="Entity"
+                    app:feedback_width="81"
+                    >
+                </com.example.gogoalfight.exploratory.FeedBack>-->
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>
