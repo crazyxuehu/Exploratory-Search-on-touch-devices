@@ -29,9 +29,9 @@ import org.apache.lucene.store.FSDirectory;
 
 
 public class IndexBuild {
-	//private  static String inputPath="/home/crazy_bird/envm/data/instance_processed/";
-	private  static String inputPath="/home/ubuntu/Kg_Explore/data/instance_processed/";
-	private  static String outPath=inputPath+"index/";
+	private  static String inputPath="/home/crazy_bird/envm/data/";
+	//private  static String inputPath="/home/ubuntu/Kg_Explore/data/";
+	private  static String outPath=inputPath+"Index/";
 	private  String entityPath="entity2id.txt";
 	private  String abstractPath="entity2abstract.txt";
 	private  HashSet<String> entitySet=new HashSet<String>();

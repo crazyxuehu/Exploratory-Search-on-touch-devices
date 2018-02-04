@@ -18,8 +18,8 @@ public class DataLoad extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	//private static String path="/home/crazy_bird/envm/data/instance_processed/";
-	private static String path="/home/ubuntu/Kg_Explore/data/instance_processed/";
+	private static String path="/home/crazy_bird/envm/data/";
+	//private static String path="/home/ubuntu/Kg_Explore/data/instance_processed/";
 	public static int D_Entity=100;
 	public static int D_Relation=100;
 	public static int Relation_type=0;
@@ -82,7 +82,7 @@ public class DataLoad extends HttpServlet{
 		}
 	}
 	public void createTripleIndex(){
-		String data="train.txt";
+		String data="triple.txt";
 		tripleHash.put(0, new HashMap());
 		tripleHash.put(1, new HashMap());
 		BufferedReader reader;
@@ -92,8 +92,8 @@ public class DataLoad extends HttpServlet{
 			while((tmpString = reader.readLine()) != null) {
 				String []ss=tmpString.split("\t");            	
             	String subject = URLDecoder.decode(ss[0], "UTF-8").replaceAll("_", " ");
-            	String predicate = URLDecoder.decode(ss[2], "UTF-8");
-            	String object = URLDecoder.decode(ss[1], "UTF-8").replaceAll("_", " ");
+            	String predicate = URLDecoder.decode(ss[1], "UTF-8");
+            	String object = URLDecoder.decode(ss[2], "UTF-8").replaceAll("_", " ");
             	
             	if(RelationId.containsKey(predicate)){
             		int relationId = RelationId.get(predicate);

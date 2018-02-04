@@ -31,7 +31,7 @@ public class IndexServiceImp implements IndexService{
 	@Override
 	public List<String> autoComplete(String query,int k) {
 		ArrayList<String> entityList = new ArrayList<>();
-		QueryParser parser_name = new QueryParser("name", new StandardAnalyzer());	
+		QueryParser parser_name = new QueryParser("context", new StandardAnalyzer());	
 		Query query_name;
 		IndexSearcher searcher=new IndexSearcher(IndexBuild.getIndexReader());
 		try {
@@ -47,7 +47,7 @@ public class IndexServiceImp implements IndexService{
 		}
 			
 		if(entityList.size() < k) {
-			QueryParser parser_context = new QueryParser("context", new StandardAnalyzer());
+			QueryParser parser_context = new QueryParser("name", new StandardAnalyzer());
 			Query query_context;
 			try {
 				query_context = parser_context.parse(getHistory().get(0).toString());

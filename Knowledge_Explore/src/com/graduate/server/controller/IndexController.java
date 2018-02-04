@@ -68,9 +68,9 @@ public class IndexController {
 		}*/
 		//System.out.println(System.currentTimeMillis()-time);
 		List<Feature>simFeaturelist=service.getQueryFeature(simList);
-		/*for(int i=0;i<simFeaturelist.size();i++){
-			System.out.println(simFeaturelist.get(i).getQuery().getName()+" "+simFeaturelist.get(i).getTarget().getName()+" "+simFeaturelist.get(i).getScore()+" "+simFeaturelist.get(i).getRelation().getName());
-		}*/
+		for(int i=0;i<simFeaturelist.size();i++){
+			System.out.println(simFeaturelist.get(i).getTarget().getName()+" "+simFeaturelist.get(i).getScore()+" "+simFeaturelist.get(i).getRelation().getDirection());
+		}
 		//System.out.println(System.currentTimeMillis()-time);
 		//Visual vis=exservice.getAllPath(queryli.get(0).getName(),simList);
 		//System.out.println(System.currentTimeMillis()-time);

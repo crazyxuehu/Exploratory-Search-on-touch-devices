@@ -192,6 +192,42 @@ public class DataUtil {
 		if(sum==0) return -100;
 		return e.getScore()*(Math.sqrt(dimension)-Math.sqrt(sum))/Math.sqrt(dimension);
 	}
+	public static double computeScore(Feature e,Integer key) {
+		//System.out.println(e.getQuery().getId()+" "+e.getQuery().getName());
+		double [] vector2 = null;
+		if(DataLoad.EntityVector.containsKey(key)){
+			vector2 = DataLoad.EntityVector.get(key);
+		}else {
+			return -1000;
+		}
+		int queryId = e.getQuery().getId();
+		int relationId = e.getRelation().getRelationId();
+		double bonus = 0;//set bonus if the query entity, relation and target entity construct a triple then add 0.5 or 1
+		double[] queryVec = getEntityVector(e.getQuery().getId());
+		//for(int i=0;i<1;i++) System.out.print("queryVect:"+queryVec[i]);
+		double[] relationVec= getRelationVector(e.getRelation().getRelationId());
+		int direction = e.getRelation().getDirection();
+		//for(int i=0;i<1;i++) System.out.print(queryVec[i]+" ");
+		//System.out.println("above entity");
+		//for(int i=0;i<1;i++) System.out.print(relationVec[i]+" ");
+		//System.out.println("above relation");
+		double[] resultVec = new double[queryVec.length];
+		if(direction == 0) {
+			for(int i=0;i<queryVec.length;i++) resultVec[i]=queryVec[i]+relationVec[i];
+		}else {
+			for(int i=0;i<queryVec.length;i++) resultVec[i]=queryVec[i]-relationVec[i];
+		}
+		double sum=0;
+		int dimension = vector2.length;
+		for(int i=0;i<dimension;i++){
+			sum+=Math.pow(resultVec[i] - vector2[i], 2);
+		}
+		if(sum==0) return -100;
+		if(DataLoad.tripleHash.get(1-direction).get(queryId).get(relationId).contains(key)) {
+			bonus+=1;
+		}
+		return (e.getScore()*(Math.sqrt(dimension)-Math.sqrt(sum))/Math.sqrt(dimension))+bonus;
+	}
 	public static double computeScore(Entity query,double[]relation,int direction,double[]target){
 		double[]queryVector=getEntityVector(query.getId());
 		double[]vector=new double[DataLoad.D_Entity];
@@ -233,7 +269,7 @@ public class DataUtil {
 				.map(e->computeScore(e,vector))
 				.reduce(0.0,(a,e)->a+e);
 			double score2=feature.stream()
-					.map(e->computeScore(e,vector))
+					.map(e->computeScore(e,key))
 					.reduce(0.0,(a,e)->a+e);
 			return new Entity(key,score1+score2);
 		}

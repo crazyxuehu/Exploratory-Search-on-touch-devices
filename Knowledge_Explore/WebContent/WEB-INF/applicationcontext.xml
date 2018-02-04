@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	   
+	<context:property-placeholder location="classpath:jdbc.properties" /> 
+
+	<!-- 使用 annotation 自动注册bean,并检查@Controller, @Service, @Repository注解已被注入 -->
+	<context:component-scan base-package="com.*" />
+	
+	<!-- jndi 
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+ 	 <property name="jndiName" value="skFinancialDS" /> 
+ 	</bean>-->
+	
+	
+	<!-- dbcp 	-->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${dataSource.driverName}" />
+		<property name="url" value="${dataSource.url}" />
+		<property name="username" value="${dataSource.username}" />
+		<property name="password" value="${dataSource.password}" />
+	</bean>
+<!-- 	配置大文本lob处理方法 -->
+	<!-- <bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" lazy-init="true"></bean>  -->
+
+	
+	<!-- 配置Jdbc模板 -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+          
+    <!-- 配置事务管理器 --> 
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>  
+ 
+    <!-- 通过AOP配置提供事务增强，让service包下所有Bean的所有方法拥有事务   -->
+    <aop:config proxy-target-class="true"> 
+        <aop:pointcut id="serviceMethod"
+            expression=" execution(* com.graduate.server.service..*(..))" />
+        <aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" />
+    </aop:config>
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" />
+        </tx:attributes>
+    </tx:advice>
+	<!--  定时任务 防止失去连接-->
+	<!-- <bean id="job2"  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+		<property name="targetObject">  
+		<bean class="com.wondersgroup.server.controller.JobController" />  
+		</property>  
+		<property name="targetMethod" value="doJob" />  
+		<property name="concurrent" value="false" />作业不并发调度  
+	</bean>   
+	<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">  
+		<property name="jobDetail" ref="job2" />  
+		<property name="startDelay" value="0" />调度工厂实例化后，经过0秒开始执行调度  
+		<property name="repeatInterval" value="120000" />每2秒调度一次  
+	</bean>  
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+		<property name="triggers">  
+		<list>  
+		<ref bean="simpleTrigger" />  
+		</list>  
+		</property>  
+	</bean>  --> 
+</beans>
