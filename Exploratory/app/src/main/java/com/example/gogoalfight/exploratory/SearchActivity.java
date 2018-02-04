@@ -76,6 +76,7 @@ public class SearchActivity extends AppCompatActivity {
         MultiAutoCompleteTextView text=(MultiAutoCompleteTextView)findViewById(R.id.searchtext);
         final GlobalData mydata=(GlobalData)getApplicationContext();
         this.count=0;
+        //System.out.println("String:"+text.getText().toString());
         new beginSearch(text.getText().toString(),mydata,this).search(this);
         data.setData(Uri.parse(text.getText().toString()));
         //final Context mycontext=this;

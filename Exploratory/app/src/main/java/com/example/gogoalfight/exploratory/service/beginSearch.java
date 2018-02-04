@@ -37,14 +37,28 @@ public class beginSearch {
     }
     public beginSearch(){}
     public void search(SearchActivity searchActivity){
+        //System.out.println("query:"+query);
         String[]list=query.split(",\\s");
         mydata.setQueryList(Arrays.asList(list));
         String query="&query=";
+        String relation="&relation=";
+        String direction="&direction=";
         String search="getIndex?";
-        for(int i=0;i<list.length;i++){
-            search+=query+list[i];
+        for(String entity:list){
+            System.out.println("entity:"+entity);
+            if(entity.contains("#")){
+                String []feature=entity.split("##");
+                query+=feature[1]+",";
+                relation+=feature[0]+",";
+                direction+="0,";
+            }else{
+               query+=entity+",";
+                relation+=" ,";
+                direction+="0,";
+            }
         }
-        createConnection.getSearchResult(search,mycontext,searchActivity);
+        System.out.println(search+query+relation+direction);
+        createConnection.getSearchResult(search+query+relation+direction,mycontext,searchActivity);
     }
     public void search(List<FeedBackModel> queryList, List<FeedBackModel>feedbackList, FragmentManager fragmentManager, MainFragement mainFragement){
         System.out.println("begin search");

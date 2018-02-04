@@ -151,8 +151,14 @@ public class MainActivity extends AppCompatActivity{
             List<FeedBackModel>myQueryList=new ArrayList<FeedBackModel>();
             for(int i=0;i<querylist.length;i++){
                 //System.out.println("queryList:"+querylist[i]);
-                mainFragment.addQuerySet(querylist[i]);
-                myQueryList.add(new FeedBackModel(new FeatureButtonModel(1,null,querylist[i])));
+                if(querylist[i].contains("#")){
+                    String[]feature=querylist[i].split("##");
+                    mainFragment.addQuerySet(feature[1]);
+                    myQueryList.add(new FeedBackModel(new FeatureButtonModel(0,feature[0],feature[1])));
+                }else {
+                    mainFragment.addQuerySet(querylist[i]);
+                    myQueryList.add(new FeedBackModel(new FeatureButtonModel(1, null, querylist[i])));
+                }
             }
             mainFragment.setQueryList(QURYE_NUM,myQueryList);
         }
