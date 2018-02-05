@@ -140,8 +140,8 @@ public class touchListener implements View.OnTouchListener{
                     }
                    /* Toast.makeText(mainFragement.getContext(),"xdistance:"+String.valueOf(startx-endx)+"ydistance:"+String.valueOf(starty-endy),Toast.LENGTH_SHORT).show();*/
                     //System.out.println("begin the long touch event");
-                    if (label!=null&&label.equals("subject")) {
-                        mytail = "category:" + mytail;
+                    if (label!=null&&(label.equals("subject")||label.equals("Subject"))) {
+                        mytail = "Category:" + mytail;
                     }
                     final String tail=mytail;
                     //System.out.println("paht explore now!");

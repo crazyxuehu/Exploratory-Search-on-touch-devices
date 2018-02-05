@@ -24,8 +24,8 @@ public class createConnection {
 
 
 
-    //private static String baseUrl="http://10.77.40.30:8080/Knowledge_Explore/";
-    private static String baseUrl="http://139.199.25.205:8080/Knowledge_Explore/";
+    private static String baseUrl="http://10.77.40.30:8080/Knowledge_Explore/";
+    //private static String baseUrl="http://139.199.25.205:8080/Knowledge_Explore/";
     private static String imageUrl="http://www.omdbapi.com/?&apikey=707b812e&t=";
     public static void getImageUrl(String url, Context ui,FragmentManager fragmentManager,MainFragement mainFragement){
         String entity=url;

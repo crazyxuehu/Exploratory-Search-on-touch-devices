@@ -1,5 +1,6 @@
 package com.example.gogoalfight.exploratory;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -305,6 +306,16 @@ public class MainFragement extends Fragment  {
     public void dealRelationExplore(String head,String tail){
             final  MainFragement mainFragement=this;
             final VisualPathFragment vispath=VisualPathFragment.newInstance();
+            final long time=System.currentTimeMillis();
+            final Handler myHandler=new Handler();
+            final Context mycontext = this.getContext();
+            final Runnable alertUI = new Runnable() {
+                @Override
+                public void run() {
+                    new AlertDialog.Builder(mycontext).setTitle("System Error").setMessage("network error or server Error,Please try again!")
+                            .setNegativeButton("ok",null).show();
+                }
+            };
             createConnection.getPath(head,tail,this.getContext(),this);
                     final ProgressDialog dialog=ProgressDialog.show(this.getContext(),"","Loading Data...",true);
                     new Thread(new Runnable() {
@@ -315,6 +326,13 @@ public class MainFragement extends Fragment  {
                                     if(mainFragement.path!=null){
                                         vispath.show(getFragmentManager(),"dialog");
                                         dialog.dismiss();
+                                        break;
+                                    }
+                                    long current = System.currentTimeMillis();
+                                    if((current-time)/1000>3){
+                                        dialog.dismiss();
+                                        //Toast.makeText(mycontext,"System Error: network error or server Error, try again!", Toast.LENGTH_SHORT).show();
+                                        myHandler.post(alertUI);
                                         break;
                                     }
                                 }
@@ -343,7 +361,17 @@ public class MainFragement extends Fragment  {
             //System.out.println("create Entity info");
             createConnection.getEntityInfo(entity,ui,dfragment,this);
             //System.out.println("deal with long press");
+            final Handler myHandler=new Handler();
+            final Context mycontext=this.getContext();
+            final long time=System.currentTimeMillis();
             final ProgressDialog dialog=ProgressDialog.show(this.getContext(),"","Loading Data...",true);
+            final Runnable alertUI= new Runnable() {
+                @Override
+                public void run() {
+                    new AlertDialog.Builder(mycontext).setTitle("System Error").setMessage("network error or server Error,Please try again!")
+                            .setNegativeButton("ok",null).show();
+                }
+            };
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -352,6 +380,15 @@ public class MainFragement extends Fragment  {
                             if(mydata.getResultFlag()==1&&mydata.getImageFlag()==1) {
                                 dfragment.show(getFragmentManager(), "dialog");
                                 dialog.dismiss();
+                                break;
+                            }
+                            long current=System.currentTimeMillis();
+                            if((current-time)/1000>3){
+                                dialog.dismiss();
+                                //Toast.makeText(mycontext,"System Error: network error or server Error, try again!",Toast.LENGTH_SHORT).show();
+                                /*new AlertDialog.Builder(mycontext).setTitle("System Error").setMessage("network error or server Error,Please try again!")
+                                           .setNegativeButton("ok",null).show();*/
+                                myHandler.post(alertUI);
                                 break;
                             }
                         }
@@ -372,6 +409,8 @@ public class MainFragement extends Fragment  {
         final FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();
         final MainFragement mainFragement=this;
         final int queryNum=QueryNum;
+        final long time = System.currentTimeMillis();
+        final Context mycontext = this.getContext();
         final Runnable updateUI=new Runnable() {
             @Override
             public void run() {
@@ -380,6 +419,13 @@ public class MainFragement extends Fragment  {
                 mainFragement.changeData();
                 fragmentTransaction.show(mainFragement);
                 fragmentTransaction.commit();
+            }
+        };
+        final Runnable alertUI=new Runnable() {
+            @Override
+            public void run() {
+            new AlertDialog.Builder(mycontext).setTitle("System Error").setMessage("network error or server Error,Please try again!")
+                    .setNegativeButton("ok",null).show();
             }
         };
         final ProgressDialog dialog=ProgressDialog.show(ui,"","Loading Data...",true);
@@ -391,6 +437,14 @@ public class MainFragement extends Fragment  {
                         if(mydata.getCount()!=0&&mydata.getCount()==mydata.getSimEntityCount()) {
                             myHandler.post(updateUI);
                             dialog.dismiss();
+                            break;
+                        }
+                        long current = System.currentTimeMillis();
+                        if((current-time)/1000>3){
+                            dialog.dismiss();
+                            //Toast.makeText(mycontext,"System Error: network Error or server Error,please try agin!",Toast.LENGTH_SHORT).show();
+                           // System.out.println("yes");
+                            myHandler.post(alertUI);
                             break;
                         }
                     }

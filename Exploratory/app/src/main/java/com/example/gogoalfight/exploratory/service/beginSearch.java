@@ -109,8 +109,8 @@ public class beginSearch {
                    weight=feedBack.getWeight();
                    String label = feedBack.getLabel();
                    String text = feedBack.getText();
-                   if(label.equals("subject")){
-                       text="category:"+text;
+                   if(label.equals("subject")||label.equals("Subject")){
+                       text="Category:"+text;
                    }
                    positiveQuery.add(new FeedBackModel(new FeatureButtonModel(feedBack.getDirection(),label,feedBack.getText()),weight));
                    //System.out.println("weight:"+String.valueOf(weight));
@@ -140,7 +140,7 @@ public class beginSearch {
                    weight=feedBack.getWeight();
                    String label = feedBack.getLabel();
                    String text = feedBack.getText();
-                   if(label.equals("subject")){
+                   if(label.equals("subject")||label.equals("Subject")){
                        text="category:"+text;
                    }
                    negetiveQuery.add(new FeedBackModel(new FeatureButtonModel(feedBack.getDirection(),label,feedBack.getText()),weight));
